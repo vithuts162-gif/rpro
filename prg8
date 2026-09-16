@@ -1,0 +1,26 @@
+# Creating a Data Frame
+student_data <- data.frame(
+  RollNo = c(101, 102, 103, 104, 105, 106, 107, 108),
+  Name = c("Anu", "Bala", "Chitra", "Deepak",
+           "Elan", "Farah", "Gokul", "Hari"),
+  Age = c(18, 19, 18, 20, 19, 18, 21, 20),
+  Marks = c(85, 78, 92, 88, 75, 95, 81, 89),
+  Department = c("CSE", "ECE", "IT", "CSE",
+                 "EEE", "IT", "ECE", "CSE")
+)
+
+# Display Data Frame
+cat("Student Data Frame\n")
+print(student_data)
+
+# Explore Structure
+cat("\nStructure of Data Frame\n")
+str(student_data)
+
+# Statistical Summary
+cat("\nSummary of Data Frame\n")
+summary(student_data)
+
+# Display First Six Rows
+cat("\nFirst Six Rows\n")
+head(student_data)
