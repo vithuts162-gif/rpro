@@ -1,0 +1,54 @@
+# Install package (run only once)
+install.packages("rpart")
+
+# Load package
+library(rpart)
+
+# Load Built-in Iris Dataset
+data(iris)
+
+# Display First Few Records
+head(iris)
+
+# Build Decision Tree Model
+tree_model <- rpart(
+  Species ~ Sepal.Length + Sepal.Width +
+            Petal.Length + Petal.Width,
+  data = iris,
+  method = "class"
+)
+
+# Display Model Summary
+print(tree_model)
+summary(tree_model)
+
+# Plot Decision Tree
+plot(tree_model,
+     uniform = TRUE,
+     margin = 0.1)
+
+text(tree_model,
+     use.n = TRUE,
+     all = TRUE,
+     cex = 0.8)
+
+# Predict Classes
+predicted_species <- predict(
+  tree_model,
+  type = "class"
+)
+
+# Confusion Matrix
+conf_matrix <- table(
+  Actual = iris$Species,
+  Predicted = predicted_species
+)
+
+print(conf_matrix)
+
+# Accuracy
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+
+cat("\nAccuracy =",
+    round(accuracy * 100, 2),
+    "%")
