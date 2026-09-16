@@ -1,0 +1,38 @@
+# Load Dataset 
+data(iris) 
+# Display First Six Records 
+head(iris) 
+# Remove Target Variable 
+iris_data <- iris[,1:4] 
+# Calculate Distance Matrix 
+distance_matrix <- dist(  iris_data,  method = "euclidean") 
+# Display Dsistance Matrix 
+print(distance_matrix) 
+R Programming LabPage 47 
+KG College of Arts and Science (Autonomous)                                          Lab Manual - 2024 Batch onwards 
+ 
+ 
+ 
+# Perform Hierarchical Clustering 
+hc_model <- hclust(  distance_matrix,  method = "ward.D2") 
+ 
+# Display Clustering Result 
+print(hc_model) 
+ 
+# Plot Dendrogram 
+plot(  hc_model,  labels = FALSE,  hang = -1,  main = "Hierarchical Clustering Dendrogram", 
+  xlab = "Observations",  ylab = "Height") 
+ 
+# Draw Cluster Boundaries 
+rect.hclust(  hc_model,  k = 3,  border = "red") 
+ 
+# Generate Cluster Labels 
+clusters <- cutree(  hc_model,  k = 3) 
+ 
+# Display Cluster Membership 
+cat("Cluster Assignments:\n") 
+print(clusters) 
+ 
+# Cluster Sizes 
+cat("\nCluster Sizes:\n") 
+print(table(clusters))
