@@ -1,0 +1,54 @@
+# Transaction Data
+transactions <- list(
+  c("Milk", "Bread", "Butter"),
+  c("Bread", "Butter"),
+  c("Milk", "Bread"),
+  c("Milk", "Butter"),
+  c("Bread", "Butter", "Eggs"),
+  c("Milk", "Bread", "Butter"),
+  c("Milk", "Eggs"),
+  c("Bread", "Eggs"),
+  c("Milk", "Bread", "Eggs"),
+  c("Bread", "Butter")
+)
+
+# Total number of transactions
+n <- length(transactions)
+
+# Get all unique items
+items <- unique(unlist(transactions))
+
+# Calculate frequency of each item
+freq <- sapply(
+  items,
+  function(item) {
+    sum(
+      sapply(
+        transactions,
+        function(x) item %in% x
+      )
+    )
+  }
+)
+
+# Calculate Support
+support <- freq / n
+
+# Create Frequent Itemsets Data Frame
+frequent_itemsets <- data.frame(
+  Item = items,
+  Frequency = freq,
+  Support = round(support, 2)
+)
+
+# Display all items
+print(frequent_itemsets)
+
+# Display items with Support >= 0.30
+cat("\nFrequent Itemsets\n")
+
+print(
+  frequent_itemsets[
+    frequent_itemsets$Support >= 0.30,
+  ]
+)
