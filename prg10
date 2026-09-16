@@ -1,0 +1,52 @@
+# Install package (run only once)
+install.packages("lmtest")
+
+# Load package
+library(lmtest)
+
+# Sample Dataset
+Hours <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+Marks <- c(15, 25, 35, 42, 50, 58, 65, 72, 82, 90)
+
+data <- data.frame(Hours, Marks)
+
+# Fit Linear Regression Model
+model <- lm(Marks ~ Hours, data = data)
+
+# Display Model Summary
+summary(model)
+
+# Scatter Plot (Linearity)
+plot(Hours, Marks,
+     main = "Scatter Plot",
+     xlab = "Hours Studied",
+     ylab = "Marks")
+
+abline(model)
+
+# Residuals
+residuals_model <- residuals(model)
+
+# Histogram of Residuals
+hist(residuals_model,
+     main = "Histogram of Residuals",
+     xlab = "Residuals")
+
+# Q-Q Plot
+qqnorm(residuals_model)
+qqline(residuals_model)
+
+# Shapiro-Wilk Test
+shapiro.test(residuals_model)
+
+# Residuals vs Fitted Plot
+plot(fitted(model),
+     residuals_model,
+     main = "Residuals vs Fitted",
+     xlab = "Fitted Values",
+     ylab = "Residuals")
+
+abline(h = 0)
+
+# Breusch-Pagan Test
+bptest(model)
