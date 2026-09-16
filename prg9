@@ -1,0 +1,31 @@
+# Create a numeric vector
+data <- c(10, 15, 20, 25, 20, 30, 35, 20, 40)
+
+# Mean
+mean_value <- mean(data)
+
+# Median
+median_value <- median(data)
+
+# Mode Function
+getmode <- function(v) {
+  unique_values <- unique(v)
+  unique_values[which.max(tabulate(match(v, unique_values)))]
+}
+
+# Calculate Mode
+mode_value <- getmode(data)
+
+# Variance
+variance_value <- var(data)
+
+# Standard Deviation
+sd_value <- sd(data)
+
+# Display Results
+cat("Dataset :", data, "\n")
+cat("Mean =", mean_value, "\n")
+cat("Median =", median_value, "\n")
+cat("Mode =", mode_value, "\n")
+cat("Variance =", variance_value, "\n")
+cat("Standard Deviation =", sd_value, "\n")
